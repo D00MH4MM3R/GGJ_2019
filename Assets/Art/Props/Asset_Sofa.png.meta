@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 504963eb501924c499993d729bb15545
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Asset_Sofa_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +83,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Asset_Sofa_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 85
+        width: 946
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5711493636ad144bba98160e676ab0b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

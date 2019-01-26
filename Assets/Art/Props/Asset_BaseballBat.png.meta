@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 07a084ab4f7522c49929a293bc44153c
+guid: 9cc3c2f4fffac88468419dcb26f7566f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Asset_UpStairs_0
+    21300000: Asset_BaseballBat_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,13 +85,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Asset_UpStairs_0
+      name: Asset_BaseballBat_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 242
-        width: 1088
-        height: 1412
+        x: 431
+        y: 52
+        width: 153
+        height: 852
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffcb29dbc2e36584fb4c27d6b1c50d91
+      spriteID: b9b9c76de4b276646b150c2827e0d4f7
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f74662ec729828f46adf32c798676f3a
+    spriteID: 3949b850f99ecc94a94df364c4dbef2a
     vertices: []
     indices: 
     edges: []

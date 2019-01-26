@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 07a084ab4f7522c49929a293bc44153c
+guid: 3b6c5b5bad72221459bfaa8b638aa3fc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Asset_UpStairs_0
+    21300000: Asset_Knife_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,13 +85,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Asset_UpStairs_0
+      name: Asset_Knife_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 242
-        width: 1088
-        height: 1412
+        x: 383
+        y: 39
+        width: 190
+        height: 869
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffcb29dbc2e36584fb4c27d6b1c50d91
+      spriteID: be4e83f398dc11842a147113dce655ed
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f74662ec729828f46adf32c798676f3a
+    spriteID: 7d4d9851b5ac59c45ac18338dea52457
     vertices: []
     indices: 
     edges: []

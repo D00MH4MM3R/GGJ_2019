@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 8d4e0122c84a8c944807c3c4316578d9
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Asset_FrameSet_02_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +83,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Asset_FrameSet_02_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 43
+        width: 981
+        height: 710
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4fe841118aa1c45af816ec4c7a1977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

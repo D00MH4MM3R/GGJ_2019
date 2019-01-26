@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: be2f602b2f0ec384da3c865bba399123
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Asset_DownStairs_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +83,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Asset_DownStairs_0
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 108
+        width: 1026
+        height: 1793
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1fbb27f3b7d8a40859119b0cf7f3d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

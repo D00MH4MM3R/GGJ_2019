@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 6e5a3e724b84a0e40832a28d97561638
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Asset_FrameSet_01_0
+    21300002: Asset_FrameSet_01_1
+    21300004: Asset_FrameSet_01_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +85,67 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Asset_FrameSet_01_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 25
+        width: 295
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969c00399d7c7d94f94e3ec7b4e60339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_FrameSet_01_1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 129
+        width: 328
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b0dc40c1d12804086e62d9b52ae31b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Asset_FrameSet_01_2
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 250
+        width: 312
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a38528a6cbe9f043baa5f824ebac6aa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
