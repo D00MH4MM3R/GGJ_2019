@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 07a084ab4f7522c49929a293bc44153c
+guid: a52b070443380484fa54c6a08938be2f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Asset_UpStairs_0
+    21300000: Asset_ShotGun_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,21 +85,21 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Asset_UpStairs_0
+      name: Asset_ShotGun_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 242
-        width: 1088
-        height: 1412
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 62
+        y: 66
+        width: 962
+        height: 798
+      alignment: 9
+      pivot: {x: 0.29589954, y: 0.40089822}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffcb29dbc2e36584fb4c27d6b1c50d91
+      spriteID: 01a2f9ec130c4a548942206860cbdb50
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f74662ec729828f46adf32c798676f3a
+    spriteID: 1712a4cb1f8492442b768dc46cc7cff5
     vertices: []
     indices: 
     edges: []

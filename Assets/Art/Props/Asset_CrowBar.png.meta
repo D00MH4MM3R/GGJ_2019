@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 07a084ab4f7522c49929a293bc44153c
+guid: 4905b79a3bd225e48811ac8045eaf0aa
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Asset_UpStairs_0
+    21300000: Asset_CrowBar_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,21 +85,21 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Asset_UpStairs_0
+      name: Asset_CrowBar_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 242
-        width: 1088
-        height: 1412
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 175
+        y: 110
+        width: 801
+        height: 718
+      alignment: 9
+      pivot: {x: 0.5272361, y: 0.4848079}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffcb29dbc2e36584fb4c27d6b1c50d91
+      spriteID: a0d38c25d1ca33b499ba1cb06a7ade2a
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f74662ec729828f46adf32c798676f3a
+    spriteID: fafe3be13d9cb2149871a29c59ee747e
     vertices: []
     indices: 
     edges: []

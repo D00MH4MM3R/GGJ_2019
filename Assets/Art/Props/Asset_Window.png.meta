@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: 76a5cf6fec5f3ed4c989f65c722bd3c5
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Asset_Window_1
+    21300002: Asset_Window_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +84,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Asset_Window_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 50
+        width: 1702
+        height: 1780
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477bd65ba60c5264aa98e8fe40467cca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
