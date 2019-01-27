@@ -500,6 +500,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &398384582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 443517074}
+    m_Modifications:
+    - target: {fileID: 5809900144322611359, guid: 6f0372c71ee182e43b056e0c891831a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Hideable_CardboardBox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079831459611618577, guid: 6f0372c71ee182e43b056e0c891831a5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079831459611618577, guid: 6f0372c71ee182e43b056e0c891831a5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 118.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079831459611618577, guid: 6f0372c71ee182e43b056e0c891831a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f0372c71ee182e43b056e0c891831a5, type: 3}
 --- !u!1001 &402630232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -783,6 +812,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db99451c7d1c334bbfe85fb8bdb7feb, type: 3}
+--- !u!4 &443517074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6874957333129366830, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+    type: 3}
+  m_PrefabInstance: {fileID: 443517073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &490485728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2064,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -2419,7 +2454,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
