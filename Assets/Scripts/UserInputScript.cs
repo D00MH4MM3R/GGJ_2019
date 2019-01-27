@@ -29,10 +29,10 @@ public class UserInputScript : MonoBehaviour
 		{
 			var currentPos = transform.position;
 			if (Input.GetButton ("Horizontal")) {
-				if (Input.GetKey ("d")) {
+				if (Input.GetKey ("d") || Input.GetKey("right")) {
 					m_spriteR.flipX = false;
 					currentPos.x += m_speed;
-				} else if (Input.GetKey ("a")) {
+				} else if (Input.GetKey ("a") || Input.GetKey("left")) {
 					m_spriteR.flipX = true;
 					currentPos.x -= m_speed;
 				}
