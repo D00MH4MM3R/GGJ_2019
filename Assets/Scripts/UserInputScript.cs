@@ -10,6 +10,7 @@ public class UserInputScript : MonoBehaviour
 	private SpriteRenderer m_spriteR;
 
 	private Collider2D m_doorCollider;
+    private Collider2D m_itemCollider;
 
 	private float m_doorDelayTimer = 0.0f;
 	public float m_doorDelay = 0.3f;
@@ -18,6 +19,8 @@ public class UserInputScript : MonoBehaviour
 
 	private bool isAbleToHide = false;
 	public static bool isHidden = false;
+
+    public ItemType m_HoldingItemType = ItemType.None;
 
 
     // Start is called before the first frame update
@@ -69,6 +72,12 @@ public class UserInputScript : MonoBehaviour
 			isHidden = !isHidden;
 			m_spriteR.enabled = !isHidden;
 		}
+
+        // item
+        if (Input.GetKeyDown("r"))
+        {
+
+        }
     }
 
 	void OnTriggerEnter2D (Collider2D col)
@@ -82,6 +91,10 @@ public class UserInputScript : MonoBehaviour
 		case "Interact":
 			GameManager.interactObject.SetActive (true);
 			break;
+        case "Item":
+            //GameManager.interactObject.SetActive(true);
+            //col.gameObject.GetPar
+            break;
 		case "Door":
 			currentCollider = col.GetComponent<GetSillyCollision>().myCollider;
 			m_doorCollider = col;
