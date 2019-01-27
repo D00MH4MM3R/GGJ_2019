@@ -9,11 +9,17 @@ public class UserInputScript : MonoBehaviour
 
 	private SpriteRenderer m_spriteR;
 
+	private bool m_collidedWithDoor;
+	private Collider2D m_doorCollider;
+
+	private Collision2D m_doorCollision;
+
     // Start is called before the first frame update
     void Start()
     {
 		transform.position = m_startingPos.position;
 		m_spriteR = gameObject.GetComponent<SpriteRenderer> ();
+		m_collidedWithDoor = false;
     }
 
     // Update is called once per frame
@@ -38,7 +44,24 @@ public class UserInputScript : MonoBehaviour
 				Reset ();
 			}
 		}
+
+		if (m_collidedWithDoor && Input.GetKeyDown("e")) {
+			m_collidedWithDoor = false;
+			m_doorCollision.gameObject.SetActive(!m_doorCollision.gameObject.activeInHierarchy);
+		}
     }
+
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		switch (col.gameObject.tag) {
+		case "Door":
+			m_collidedWithDoor = true;
+			m_doorCollision = col;
+			break;
+		default:
+			break;
+		}
+	}
 
 	void OnTriggerEnter2D (Collider2D col)
 	{
@@ -48,6 +71,10 @@ public class UserInputScript : MonoBehaviour
 			break;
 		case "Interact":
 			GameManager.interactObject.SetActive (true);
+			break;
+		case "Door":
+			m_collidedWithDoor = true;
+			m_doorCollider = col;
 			break;
 		default:
 			break;
@@ -59,6 +86,9 @@ public class UserInputScript : MonoBehaviour
 		switch (col.gameObject.tag) {
 		case "Interact":
 			GameManager.interactObject.SetActive (false);
+			break;
+		case "Door":
+			m_collidedWithDoor = false;
 			break;
 		default:
 			break;
