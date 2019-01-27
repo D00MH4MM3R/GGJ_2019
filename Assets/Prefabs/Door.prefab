@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 155265076841768474}
-  - component: {fileID: 6943319444497790925}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -34,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6943319444497790925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155265076841768475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71cc2944c24d9c4587619211a40c60b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCollider: {fileID: 3799260007792396652}
 --- !u!1 &1748522446825178585
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110934652796555767}
   - component: {fileID: 3264949464778917285}
+  - component: {fileID: 1446301244}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Door
@@ -104,6 +91,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.462534, y: 17.66009}
   m_EdgeRadius: 0
+--- !u!114 &1446301244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748522446825178585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71cc2944c24d9c4587619211a40c60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 3799260007792396652}
 --- !u!1 &7017335346372245371
 GameObject:
   m_ObjectHideFlags: 0
