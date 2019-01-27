@@ -10,8 +10,8 @@ public class UserInputScript : MonoBehaviour
 	private SpriteRenderer m_spriteR;
 	private Animator m_Anim;
 
-	private Collider2D m_doorCollider;
-    private Collider2D m_itemCollider;
+	public Collider2D m_doorCollider;
+    public Collider2D m_itemCollider;
 
 	private float m_doorDelayTimer = 0.0f;
 	public float m_doorDelay = 0.3f;
@@ -22,6 +22,8 @@ public class UserInputScript : MonoBehaviour
 	public static bool isHidden = false;
 
     public ItemType m_HoldingItemType = ItemType.None;
+
+    GameObject m_HoldedItem;
 
 
     // Start is called before the first frame update
@@ -68,8 +70,24 @@ public class UserInputScript : MonoBehaviour
 		}
 
 		//door
-		if (Input.GetKeyDown("w") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) {
-			m_doorCollider.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
+		if (Input.GetKeyDown("w") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) 
+        {
+            GetSillyCollision silcol = m_doorCollider.GetComponent<GetSillyCollision>();
+            if (silcol == null)
+                return;
+            else if (silcol.isLocked)
+            {
+                if(HasKey())
+                {
+                    UseKey();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            m_doorCollider.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
 
 			if (currentCollider != null) {
 				currentCollider.gameObject.SetActive(!currentCollider.gameObject.activeInHierarchy);
@@ -84,9 +102,26 @@ public class UserInputScript : MonoBehaviour
 		}
 
         // item
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r") && m_itemCollider != null)
         {
+            ItemThing item = m_itemCollider.GetComponent<ItemThing>();
 
+            if(m_HoldedItem != null)
+            {
+                m_HoldedItem.SetActive(true);
+                Vector3 temp = transform.position;
+                temp.y = temp.y + 5;
+                m_HoldedItem.transform.position = temp;
+
+                m_HoldedItem = null;
+            }
+
+            if (item != null)
+            {
+                m_HoldingItemType = item.m_type;
+                m_HoldedItem = item.transform.parent.gameObject;
+                m_HoldedItem.SetActive(false);
+            }
         }
     }
 
@@ -102,9 +137,9 @@ public class UserInputScript : MonoBehaviour
 			GameManager.interactObject.SetActive (true);
 			break;
         case "Item":
-            //GameManager.interactObject.SetActive(true);
-            //col.gameObject.GetPar
-            break;
+                //GameManager.interactObject.SetActive(true);
+                m_itemCollider = col;
+                break;
 		case "Door":
 			currentCollider = col.GetComponent<GetSillyCollision>().myCollider;
 			m_doorCollider = col;
@@ -133,6 +168,9 @@ public class UserInputScript : MonoBehaviour
 			isAbleToHide = false;
 			GameManager.interactObject.SetActive (false);
 			break;
+            case "Item":
+                m_itemCollider = null;
+                break;
 		default:
 			break;
 		}
@@ -142,4 +180,23 @@ public class UserInputScript : MonoBehaviour
 	{
 		transform.position = m_startingPos.position;
 	}
+
+    bool HasKey()
+    {
+        return m_HoldingItemType == ItemType.Key;
+    }
+
+    bool HasCrowbar()
+    {
+        return m_HoldingItemType == ItemType.Crowbar;
+    }
+
+    void UseKey()
+    {
+        if(HasKey())
+        { 
+            Destroy(m_HoldedItem);
+            m_HoldingItemType = ItemType.None;
+        }
+    }
 }

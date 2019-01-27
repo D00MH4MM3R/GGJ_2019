@@ -14,7 +14,7 @@ public enum ItemType
     
 public class ItemThing : MonoBehaviour
 {
-    ItemType m_type;
+    public ItemType m_type;
 
     // Start is called before the first frame update
     void Start()
