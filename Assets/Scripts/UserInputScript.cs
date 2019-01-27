@@ -16,12 +16,15 @@ public class UserInputScript : MonoBehaviour
 
 	private Collider2D currentCollider = null;
 
+	private bool isAbleToHide = false;
+	public static bool isHidden = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
 		transform.position = m_startingPos.position;
-		m_spriteR = gameObject.GetComponent<SpriteRenderer> ();
+		m_spriteR = gameObject.GetComponentInChildren<SpriteRenderer> ();
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class UserInputScript : MonoBehaviour
 		// update position
 		{
 			var currentPos = transform.position;
-			if (Input.GetButton ("Horizontal")) {
+			if (Input.GetButton ("Horizontal") && !isHidden) {
 				if (Input.GetKey ("d") || Input.GetKey("right")) {
 					m_spriteR.flipX = false;
 					currentPos.x += m_speed;
@@ -51,13 +54,20 @@ public class UserInputScript : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown("e") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) {
+		//door
+		if (Input.GetKeyDown("w") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) {
 			m_doorCollider.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
 
 			if (currentCollider != null) {
 				currentCollider.gameObject.SetActive(!currentCollider.gameObject.activeInHierarchy);
 			}
 			m_doorDelayTimer = 0.0f;
+		}
+
+		// hiding
+		if (Input.GetKeyDown("w") && isAbleToHide) {
+			isHidden = !isHidden;
+			m_spriteR.enabled = !isHidden;
 		}
     }
 
@@ -75,6 +85,10 @@ public class UserInputScript : MonoBehaviour
 			m_doorCollider = col;
 			GameManager.interactObject.SetActive (true);
 			break;
+		case "Hideable":
+			isAbleToHide = true;
+			GameManager.interactObject.SetActive (true);
+			break;
 		default:
 			break;
 		}
@@ -88,6 +102,10 @@ public class UserInputScript : MonoBehaviour
 			break;
 		case "Door":
 			m_doorCollider = null;
+			GameManager.interactObject.SetActive (false);
+			break;
+		case "Hideable":
+			isAbleToHide = false;
 			GameManager.interactObject.SetActive (false);
 			break;
 		default:
