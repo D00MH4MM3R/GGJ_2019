@@ -45,9 +45,10 @@ public class UserInputScript : MonoBehaviour
 			}
 		}
 
-		if (m_collidedWithDoor && Input.GetKeyDown("e")) {
+		if (m_collidedWithDoor && Input.GetKeyDown("e") && m_doorCollision != null) {
 			m_collidedWithDoor = false;
 			m_doorCollision.gameObject.SetActive(!m_doorCollision.gameObject.activeInHierarchy);
+			m_doorCollision.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
 		}
     }
 
@@ -73,6 +74,7 @@ public class UserInputScript : MonoBehaviour
 			GameManager.interactObject.SetActive (true);
 			break;
 		case "Door":
+			GameManager.interactObject.SetActive (true);
 			m_collidedWithDoor = true;
 			m_doorCollider = col;
 			break;
@@ -88,6 +90,7 @@ public class UserInputScript : MonoBehaviour
 			GameManager.interactObject.SetActive (false);
 			break;
 		case "Door":
+			GameManager.interactObject.SetActive (false);
 			m_collidedWithDoor = false;
 			break;
 		default:

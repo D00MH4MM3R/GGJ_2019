@@ -6,6 +6,7 @@ public class StairsLogic : MonoBehaviour
 {
 	public Transform m_connectingStairCase;
 
+	public bool m_localPlayerJustEnteredStairs;
 	public static bool m_globalPlayerJustEnteredStairs;
 
     // Start is called before the first frame update
@@ -17,6 +18,11 @@ public class StairsLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if(m_localPlayerJustEnteredStairs && Input.GetKeyDown("e"))
+		{
+			m_localPlayerJustEnteredStairs = false;
+			GameManager.player.transform.position = m_connectingStairCase.position;
+		}
         
     }
 
@@ -24,12 +30,22 @@ public class StairsLogic : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Player") {
 			if (!m_globalPlayerJustEnteredStairs) {
+				GameManager.interactObject.SetActive (true);
+				//GameManager.player.transform.position = m_connectingStairCase.position;
+				m_localPlayerJustEnteredStairs = true;
 				m_globalPlayerJustEnteredStairs = true;
-				GameManager.player.transform.position = m_connectingStairCase.position;
 			} 
 			else {
 				m_globalPlayerJustEnteredStairs = false;
 			}
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D col)
+	{
+		if (col.gameObject.tag == "Player") {
+			GameManager.interactObject.SetActive (false);
+			m_localPlayerJustEnteredStairs = false;
 		}
 	}
 }
