@@ -15,7 +15,6 @@ public class EnemyLogic : MonoBehaviour
 	private Transform m_currentStartPoint;
 	private Transform m_currentEndPoint;
 
-	private float m_startTime;
 	private float m_pathDistance;
 
 	private bool m_GoingTowardsEndPoint;
@@ -23,6 +22,16 @@ public class EnemyLogic : MonoBehaviour
 	private SpriteRenderer m_spriteR;
 
 	private Vector3 m_currentFowardVec;
+
+	private float m_percentPathComplete = 1.0f;
+
+	enum STATE
+	{
+		PATROL_STATE,
+		ATTACK_STATE,
+	};
+
+	private STATE m_currentState = STATE.PATROL_STATE;
 
     // Start is called before the first frame update
     void Start()
@@ -32,19 +41,22 @@ public class EnemyLogic : MonoBehaviour
 
 		m_currentStartPoint = m_startPoint;
 		m_currentEndPoint = m_endPoint;
-		m_startTime = Time.time;
 		m_GoingTowardsEndPoint = true;
 
 		needReset = false;
 
-		m_spriteR = gameObject.GetComponent<SpriteRenderer> ();
+		m_spriteR = gameObject.GetComponentInChildren<SpriteRenderer> ();
     }
 
     // Update is called once per frame
     void Update()
     {
 		m_currentFowardVec = Vector3.Normalize(m_currentEndPoint.position - m_currentStartPoint.position);
-		if (!CheckForPlayer () && UserInputScript.isHidden) {
+		if (!CheckForPlayer ()) {
+			if (m_currentState == STATE.ATTACK_STATE) {
+				m_currentStartPoint = gameObject.transform;
+				m_pathDistance = Vector2.Distance (m_currentStartPoint.position, m_currentEndPoint.position);
+			}
 			Patrol ();
 		} else {
 			Attack ();
@@ -57,6 +69,9 @@ public class EnemyLogic : MonoBehaviour
 
 	bool CheckForPlayer()
 	{
+		if (UserInputScript.isHidden) {
+			return false;
+		}
 		LayerMask playerLayerMask = LayerMask.GetMask ("Player");
 		RaycastHit2D hit2D = Physics2D.Raycast (transform.position, m_currentFowardVec, m_rayCastDistance, playerLayerMask);
 		bool result = hit2D.collider != null;
@@ -65,39 +80,45 @@ public class EnemyLogic : MonoBehaviour
 
 	void Attack()
 	{
+		m_currentState = STATE.ATTACK_STATE;
+
 		Vector3 dir = Vector3.Normalize(GameManager.player.transform.position - transform.position);
 		float x = (dir.x > 0) ? 1 : -1; // the x value should only be -1 or 1
 		dir.x = x;
 
 		Vector3 currentPos = transform.position;
-		currentPos.x += dir.x * m_chaseSpeed;
+		currentPos.x += (dir.x * m_chaseSpeed) * Time.deltaTime;
 
 		transform.position = currentPos;
 	}
 
 	void Patrol()
 	{
-		if (transform.position.x != m_currentEndPoint.position.x) {
-			// distance moved = time * speed
-			float distCovered = (Time.time - m_startTime) * m_patrolSpeed;
+		m_currentState = STATE.PATROL_STATE;
+
+		if(m_percentPathComplete > 0.1f){
+			Vector3 dir = Vector3.Normalize(m_currentEndPoint.position - m_currentStartPoint.position);
+			Vector3 currentPos = transform.position;
+			currentPos.x += Time.deltaTime * (m_patrolSpeed * dir.x);
+
+			float dis = Vector2.Distance (currentPos, m_currentEndPoint.position);
 
 			// percentage of the path completed = distance moved / total distace to move
-			float percentPathComplete = distCovered / m_pathDistance;
+			m_percentPathComplete = dis / m_pathDistance;
 
-			transform.position = Vector2.Lerp (m_currentStartPoint.position, m_currentEndPoint.position, percentPathComplete);
+			transform.position = currentPos;
 		} 
 		else {
+			m_percentPathComplete = 1.0f;
 			if (m_GoingTowardsEndPoint) {
 				m_currentStartPoint = m_endPoint;
 				m_currentEndPoint = m_startPoint;
-				m_startTime = Time.time;
 				m_GoingTowardsEndPoint = false;
 				m_spriteR.flipX = true;
 			} 
 			else {
 				m_currentStartPoint = m_startPoint;
 				m_currentEndPoint = m_endPoint;
-				m_startTime = Time.time;
 				m_GoingTowardsEndPoint = true;
 				m_spriteR.flipX = false;
 			}
@@ -106,11 +127,12 @@ public class EnemyLogic : MonoBehaviour
 
 	void Reset()
 	{
+		m_currentState = STATE.PATROL_STATE;
+
 		transform.position = m_startPoint.position;
 
 		m_currentStartPoint = m_startPoint;
 		m_currentEndPoint = m_endPoint;
-		m_startTime = Time.time;
 		m_GoingTowardsEndPoint = true;
 
 		needReset = false;
