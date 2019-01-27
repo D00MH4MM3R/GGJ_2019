@@ -881,7 +881,7 @@ PrefabInstance:
     - target: {fileID: 1696900500113074353, guid: fc9d20986ac46ee4381616bde1afea78,
         type: 3}
       propertyPath: m_Text
-      value: Press E!
+      value: Press W!
       objectReference: {fileID: 0}
     - target: {fileID: 1696900500113074353, guid: fc9d20986ac46ee4381616bde1afea78,
         type: 3}

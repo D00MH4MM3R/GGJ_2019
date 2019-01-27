@@ -18,7 +18,7 @@ public class StairsLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(m_localPlayerJustEnteredStairs && Input.GetKeyDown("e"))
+		if(m_localPlayerJustEnteredStairs && Input.GetKeyDown("w"))
 		{
 			m_localPlayerJustEnteredStairs = false;
 			GameManager.player.transform.position = m_connectingStairCase.position;
