@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
 	public static void GameOver()
 	{
 		isGameOver = true;
-		gameOverObject.SetActive (true);
+        SceneManager.LoadScene("GameOver");
+		//gameOverObject.SetActive (true);
 	}
 
 	public static void Reset()
