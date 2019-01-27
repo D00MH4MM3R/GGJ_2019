@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Item
   - Hideable
+  - doorTrigger
   layers:
   - Default
   - TransparentFX

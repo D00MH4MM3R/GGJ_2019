@@ -9,22 +9,28 @@ public class UserInputScript : MonoBehaviour
 
 	private SpriteRenderer m_spriteR;
 
-	private bool m_collidedWithDoor;
 	private Collider2D m_doorCollider;
 
-	private Collision2D m_doorCollision;
+	private float m_doorDelayTimer = 0.0f;
+	public float m_doorDelay = 0.3f;
+
+	private Collider2D currentCollider = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
 		transform.position = m_startingPos.position;
 		m_spriteR = gameObject.GetComponent<SpriteRenderer> ();
-		m_collidedWithDoor = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+		float deltaTime = Time.deltaTime;
+
+		m_doorDelayTimer += deltaTime;
+
 		// update position
 		{
 			var currentPos = transform.position;
@@ -45,24 +51,15 @@ public class UserInputScript : MonoBehaviour
 			}
 		}
 
-		if (m_collidedWithDoor && Input.GetKeyDown("e") && m_doorCollision != null) {
-			m_collidedWithDoor = false;
-			m_doorCollision.gameObject.SetActive(!m_doorCollision.gameObject.activeInHierarchy);
-			m_doorCollision.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
+		if (Input.GetKeyDown("e") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) {
+			m_doorCollider.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
+
+			if (currentCollider != null) {
+				currentCollider.gameObject.SetActive(!currentCollider.gameObject.activeInHierarchy);
+			}
+			m_doorDelayTimer = 0.0f;
 		}
     }
-
-	void OnCollisionEnter2D (Collision2D col)
-	{
-		switch (col.gameObject.tag) {
-		case "Door":
-			m_collidedWithDoor = true;
-			m_doorCollision = col;
-			break;
-		default:
-			break;
-		}
-	}
 
 	void OnTriggerEnter2D (Collider2D col)
 	{
@@ -74,9 +71,9 @@ public class UserInputScript : MonoBehaviour
 			GameManager.interactObject.SetActive (true);
 			break;
 		case "Door":
-			GameManager.interactObject.SetActive (true);
-			m_collidedWithDoor = true;
+			currentCollider = col.GetComponent<GetSillyCollision>().myCollider;
 			m_doorCollider = col;
+			GameManager.interactObject.SetActive (true);
 			break;
 		default:
 			break;
@@ -90,8 +87,8 @@ public class UserInputScript : MonoBehaviour
 			GameManager.interactObject.SetActive (false);
 			break;
 		case "Door":
+			m_doorCollider = null;
 			GameManager.interactObject.SetActive (false);
-			m_collidedWithDoor = false;
 			break;
 		default:
 			break;
