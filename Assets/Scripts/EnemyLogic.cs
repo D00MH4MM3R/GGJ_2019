@@ -44,7 +44,7 @@ public class EnemyLogic : MonoBehaviour
     void Update()
     {
 		m_currentFowardVec = Vector3.Normalize(m_currentEndPoint.position - m_currentStartPoint.position);
-		if (!CheckForPlayer ()) {
+		if (!CheckForPlayer () && UserInputScript.isHidden) {
 			Patrol ();
 		} else {
 			Attack ();

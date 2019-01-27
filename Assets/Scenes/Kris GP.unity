@@ -330,25 +330,6 @@ Transform:
   m_Father: {fileID: 355015763}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &196384952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 303083295469792687, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
-    type: 3}
-  m_PrefabInstance: {fileID: 443517073}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &196384955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196384952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71cc2944c24d9c4587619211a40c60b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCollider: {fileID: 624551964}
 --- !u!1 &231222495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 324807486713421264, guid: 2381db02551ea1046aca9a8dad6a1d58,
@@ -521,14 +502,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 605460176609868133, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hideable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550330218982591752, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hideable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db99451c7d1c334bbfe85fb8bdb7feb, type: 3}
---- !u!61 &624551964 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5000299144884211132, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
-    type: 3}
-  m_PrefabInstance: {fileID: 443517073}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &626863182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7836468984928791499, guid: 413487cfd696ad241a5088f9b459593a,
@@ -1264,6 +1249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3977140319898409236, guid: 64241fbc69c2ebf4c908a28646e5b6ad, type: 3}
+    - {fileID: 3977140319898409235, guid: 64241fbc69c2ebf4c908a28646e5b6ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 64241fbc69c2ebf4c908a28646e5b6ad, type: 3}
 --- !u!1001 &1180224584
 PrefabInstance:
