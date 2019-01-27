@@ -8,6 +8,7 @@ public class UserInputScript : MonoBehaviour
 	public float m_speed = 0.01f;
 
 	private SpriteRenderer m_spriteR;
+	private Animator m_Anim;
 
 	private Collider2D m_doorCollider;
     private Collider2D m_itemCollider;
@@ -28,6 +29,8 @@ public class UserInputScript : MonoBehaviour
     {
 		transform.position = m_startingPos.position;
 		m_spriteR = gameObject.GetComponentInChildren<SpriteRenderer> ();
+
+		m_Anim = GetComponentInChildren<Animator> ();
     }
 
     // Update is called once per frame
@@ -41,14 +44,21 @@ public class UserInputScript : MonoBehaviour
 		{
 			var currentPos = transform.position;
 			if (Input.GetButton ("Horizontal") && !isHidden) {
+				
 				if (Input.GetKey ("d") || Input.GetKey("right")) {
-					m_spriteR.flipX = false;
+					m_spriteR.flipX = true;
 					currentPos.x += m_speed * deltaTime;
 				} else if (Input.GetKey ("a") || Input.GetKey("left")) {
-					m_spriteR.flipX = true;
+					m_spriteR.flipX = false;
 					currentPos.x -= m_speed * deltaTime;
 				}
 			} 
+			if (Input.GetButton ("Horizontal")) {
+				m_Anim.SetBool ("isWalking", true);
+			}
+			else if (Input.GetButtonUp ("Horizontal")) {
+				m_Anim.SetBool ("isWalking", false);
+			}
 			transform.position = currentPos;
 
 			if (GameManager.isGameOver && Input.GetKeyDown("space")) {
