@@ -36,10 +36,11 @@ public class EnemyLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		transform.position = m_startPoint.position;
+		//transform.position = m_startPoint.position;
 		m_pathDistance = Vector2.Distance (m_startPoint.position, m_endPoint.position);
 
-		m_currentStartPoint = m_startPoint;
+		//m_currentStartPoint = m_startPoint;
+		m_currentStartPoint = gameObject.transform;
 		m_currentEndPoint = m_endPoint;
 		m_GoingTowardsEndPoint = true;
 
@@ -72,10 +73,43 @@ public class EnemyLogic : MonoBehaviour
 		if (UserInputScript.isHidden) {
 			return false;
 		}
-		LayerMask playerLayerMask = LayerMask.GetMask ("Player");
-		RaycastHit2D hit2D = Physics2D.Raycast (transform.position, m_currentFowardVec, m_rayCastDistance, playerLayerMask);
-		bool result = hit2D.collider != null;
-		return result;
+
+		RaycastHit2D[] hits;
+		hits = Physics2D.RaycastAll(transform.position, m_currentFowardVec, m_rayCastDistance);
+
+		List<Collider2D> hitColliders = new List<Collider2D> ();;
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit2D hit = hits [i];
+			if (hit.collider != null && hit.collider.gameObject.tag != "Enemy" && !hit.collider.isTrigger) {
+				hitColliders.Add (hit.collider);
+			}
+		}
+
+		hitColliders.Sort ((a, b) =>
+			Vector2.Distance (transform.position, a.gameObject.transform.position).
+			CompareTo (Vector2.Distance (transform.position, b.gameObject.transform.position)));
+
+		if (hitColliders.Count > 0) {
+			string tag = hitColliders[0].gameObject.tag;
+			if (tag == "Player") {
+				return true;
+			} else if (tag == "Door") {
+				if (m_GoingTowardsEndPoint) {
+					m_currentStartPoint = hitColliders[0].gameObject.transform;
+					m_currentEndPoint = m_startPoint;
+					m_GoingTowardsEndPoint = false;
+					m_spriteR.flipX = true;
+				} 
+				else {
+					m_currentStartPoint = hitColliders[0].gameObject.transform;
+					m_currentEndPoint = m_endPoint;
+					m_GoingTowardsEndPoint = true;
+					m_spriteR.flipX = false;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	void Attack()
