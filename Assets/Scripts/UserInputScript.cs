@@ -40,10 +40,10 @@ public class UserInputScript : MonoBehaviour
 			if (Input.GetButton ("Horizontal") && !isHidden) {
 				if (Input.GetKey ("d") || Input.GetKey("right")) {
 					m_spriteR.flipX = false;
-					currentPos.x += m_speed;
+					currentPos.x += m_speed * deltaTime;
 				} else if (Input.GetKey ("a") || Input.GetKey("left")) {
 					m_spriteR.flipX = true;
-					currentPos.x -= m_speed;
+					currentPos.x -= m_speed * deltaTime;
 				}
 			} 
 			transform.position = currentPos;
@@ -75,7 +75,9 @@ public class UserInputScript : MonoBehaviour
 	{
 		switch (col.gameObject.tag) {
 		case "Enemy":
-			GameManager.GameOver();
+			if (!isHidden) {
+				GameManager.GameOver ();
+			}
 			break;
 		case "Interact":
 			GameManager.interactObject.SetActive (true);
