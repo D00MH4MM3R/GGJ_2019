@@ -2,20 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+public class DoorLock : MonoBehaviour
 {
-    None,
-    Key,
-    Knife,
-    Shotgun,
-    Crowbar,
-    BaseballBat
-}
-    
-public class ItemThing : MonoBehaviour
-{
-    public ItemType m_type;
-
     // Start is called before the first frame update
     void Start()
     {

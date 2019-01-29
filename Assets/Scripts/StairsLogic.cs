@@ -1,51 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StairsLogic : MonoBehaviour
 {
-	public Transform m_connectingStairCase;
+    private bool m_canUse = false;
 
-	public bool m_localPlayerJustEnteredStairs;
-	public static bool m_globalPlayerJustEnteredStairs;
+    public Transform m_connectingStairCase;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-		m_globalPlayerJustEnteredStairs = false;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-		if(m_localPlayerJustEnteredStairs && Input.GetKeyDown("w"))
-		{
-			m_localPlayerJustEnteredStairs = false;
-			GameManager.player.transform.position = m_connectingStairCase.position;
-		}
-        
+        if (m_canUse)
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                GameManager.Instance.player.transform.position = m_connectingStairCase.position;
+                InteractionText.SetText("Press SPACE!");
+            }
+        }
     }
 
-	void OnTriggerEnter2D (Collider2D col)
-	{
-		if (col.gameObject.tag == "Player") {
-			if (!m_globalPlayerJustEnteredStairs) {
-				GameManager.interactObject.SetActive (true);
-				//GameManager.player.transform.position = m_connectingStairCase.position;
-				m_localPlayerJustEnteredStairs = true;
-				m_globalPlayerJustEnteredStairs = true;
-			} 
-			else {
-				m_globalPlayerJustEnteredStairs = false;
-			}
-		}
-	}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            m_canUse = true;
+            InteractionText.SetText("Press SPACE!");
+        }
+    }
 
-	void OnTriggerExit2D (Collider2D col)
-	{
-		if (col.gameObject.tag == "Player") {
-			GameManager.interactObject.SetActive (false);
-			m_localPlayerJustEnteredStairs = false;
-		}
-	}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            m_canUse = false;
+            InteractionText.SetText("");
+        }
+    }
 }

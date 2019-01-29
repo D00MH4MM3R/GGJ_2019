@@ -1,53 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public GameObject m_player;
-	public static GameObject player;
+    public static GameManager Instance;
 
-	public GameObject m_gameOverObject;
-	public static GameObject gameOverObject;
+	public GameObject player;
+	public GameObject interactObject;
+	public bool isGameOver;
 
-	public GameObject m_interactObject;
-	public static GameObject interactObject;
+    void Awake()
+    {
+        Instance = this;
+    }
 
-	public static bool isGameOver;
-
-    // Start is called before the first frame update
     void Start()
     {
-		player = m_player;
-
-		gameOverObject = m_gameOverObject;
-		gameOverObject.SetActive (false);
-
-		interactObject = m_interactObject;
-		interactObject.SetActive (false);
-
-		isGameOver = false;
+        Reset();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	public static void GameOver()
+	public void GameOver()
 	{
 		isGameOver = true;
-		gameOverObject.SetActive (true);
+        SceneManager.LoadScene("GameOver");
 	}
 
-	public static void Reset()
-	{
-		gameOverObject.SetActive (false);
-		interactObject.SetActive (false);
-		isGameOver = false;
+	public void Reset()
+    {
+        isGameOver = false;
+        EnemyLogic.needReset = true;
 
-		EnemyLogic.needReset = true;
+        InteractionText.SetText("");
 	}
 }

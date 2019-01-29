@@ -116,7 +116,7 @@ public class EnemyLogic : MonoBehaviour
 	{
 		m_currentState = STATE.ATTACK_STATE;
 
-		Vector3 dir = Vector3.Normalize(GameManager.player.transform.position - transform.position);
+		Vector3 dir = Vector3.Normalize(GameManager.Instance.player.transform.position - transform.position);
 		float x = (dir.x > 0) ? 1 : -1; // the x value should only be -1 or 1
 		dir.x = x;
 
