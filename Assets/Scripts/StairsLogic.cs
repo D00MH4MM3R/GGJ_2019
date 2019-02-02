@@ -13,7 +13,7 @@ public class StairsLogic : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 GameManager.Instance.player.transform.position = m_connectingStairCase.position;
-                InteractionText.SetText("Press SPACE!");
+				InteractionText.SetText(InteractionText.GetDefaultText() + " use stairs!");
             }
         }
     }
@@ -23,7 +23,7 @@ public class StairsLogic : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             m_canUse = true;
-            InteractionText.SetText("Press SPACE!");
+			InteractionText.SetText(InteractionText.GetDefaultText() + " use stairs!");
         }
     }
 
