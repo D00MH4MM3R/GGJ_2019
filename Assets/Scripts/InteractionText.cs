@@ -11,6 +11,7 @@ public class InteractionText : MonoBehaviour
     {
         m_text = GetComponent<Text>();
 		m_defaultText = m_text.text;
+		m_text.text = "";
     }
 
     public static void SetText(string text)

@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
     {
 		isGameOver = false;
 		EnemyLogic.needReset = true;
-
-		InteractionText.SetText("");
     }
 
 	public void GameOver()
