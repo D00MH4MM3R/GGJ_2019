@@ -1,33 +1,36 @@
 ﻿using UnityEngine;
 using System;
 
+using UnityEngine.Assertions;
+
 public class UserInputScript : MonoBehaviour
 {
+	public static bool isHidden = false;
+
+	public float m_speed = 0.01f;
+	public float m_doorDelay = 0.3f;
+
     private SpriteRenderer m_spriteRenderer;
     private Animator m_animator;
-
-    private Collider2D currentCollider = null;
 
     private float m_doorDelayTimer = 0.0f;
     private bool isAbleToHide = false;
 
     private GameObject m_heldItem;
 
-    public Collider2D m_doorCollider;
-    public Collider2D m_itemCollider;
+    private Collider2D m_doorCollider;
+    private Collider2D m_itemCollider;
 
-    public Transform m_startingPos;
-    public float m_speed = 0.01f;
-	public float m_doorDelay = 0.3f;
-	public static bool isHidden = false;
+	private int m_defaultSortingOrder;
 
-    public ItemType m_HoldingItemType = ItemType.None;
+    private ItemType m_HoldingItemType = ItemType.None;
 
     // Start is called before the first frame update
     void Start()
     {
-		transform.position = m_startingPos.position;
 		m_spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer> ();
+		m_defaultSortingOrder = m_spriteRenderer.sortingOrder;
+
 		m_animator = GetComponentInChildren<Animator> ();
     }
 
@@ -48,14 +51,7 @@ public class UserInputScript : MonoBehaviour
             transform.Translate(transform.right * deltaTime * horizontalAxis * m_speed);
         }
 
-
-        if (GameManager.Instance.isGameOver && Input.GetButton("Interact"))
-        {
-            GameManager.Instance.Reset();
-            Reset();
-        }
-
-        if (Input.GetButtonDown("Interact") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) 
+		if (Input.GetButtonDown("Interact") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) 
         {
             DoorLock doorLock = m_doorCollider.GetComponent<DoorLock>();
             if (doorLock)
@@ -71,11 +67,11 @@ public class UserInputScript : MonoBehaviour
             }
 
             m_doorCollider.gameObject.transform.parent.GetComponentInChildren<Animator> ().SetTrigger ("doorEvent");
+			m_doorCollider.gameObject.SetActive(!m_doorCollider.gameObject.activeInHierarchy);
 
-			if (currentCollider != null)
-            {
-				currentCollider.gameObject.SetActive(!currentCollider.gameObject.activeInHierarchy);
-			}
+			string doorText = m_doorCollider.gameObject.activeInHierarchy ? " open door!" : " close door!";
+			InteractionText.SetText(InteractionText.GetDefaultText() + doorText);
+
 			m_doorDelayTimer = 0.0f;
 		}
 
@@ -83,11 +79,21 @@ public class UserInputScript : MonoBehaviour
 		if (Input.GetButtonDown("Interact") && isAbleToHide)
         {
 			isHidden = !isHidden;
-			m_spriteRenderer.enabled = !isHidden;
+
+			if (isHidden) 
+			{
+				m_animator.SetBool("isWalking", false);
+				InteractionText.SetText ("");
+				m_spriteRenderer.sortingOrder = 4;
+			} 
+			else 
+			{
+				m_spriteRenderer.sortingOrder = m_defaultSortingOrder;
+			}
 		}
 
         // item
-        if (Input.GetButtonDown("PickUp") && m_itemCollider != null)
+		if (Input.GetButtonDown("Interact") && m_itemCollider != null)
         {
             Item item = m_itemCollider.GetComponent<Item>();
 
@@ -120,21 +126,18 @@ public class UserInputScript : MonoBehaviour
 				GameManager.Instance.GameOver();
 			}
 			break;
-		case "Interact":
-            InteractionText.SetText("Press SPACE!");
-			break;
         case "Item":
-            InteractionText.SetText("Press E!");
+			InteractionText.SetText(InteractionText.GetDefaultText() + " pick up item!");
             m_itemCollider = col;
             break;
 		case "Door":
-			currentCollider = col.GetComponent<GetSillyCollision>().myCollider;
-			m_doorCollider = col;
-            InteractionText.SetText("Press SPACE!");
+			m_doorCollider = col.GetComponent<GetSillyCollision>().myCollider;
+			string doorText = m_doorCollider.gameObject.activeInHierarchy ? " open door!" : " close door!";
+			InteractionText.SetText(InteractionText.GetDefaultText() + doorText);
             break;
 		case "Hideable":
 			isAbleToHide = true;
-            InteractionText.SetText("Press SPACE!");
+			InteractionText.SetText(InteractionText.GetDefaultText() + " hide!");
             break;
 		default:
 			break;
@@ -145,8 +148,6 @@ public class UserInputScript : MonoBehaviour
 	{
 		switch (col.gameObject.tag)
         {
-		case "Interact":
-			break;
 		case "Door":
 			m_doorCollider = null;
 			break;
@@ -162,11 +163,6 @@ public class UserInputScript : MonoBehaviour
 
         InteractionText.SetText("");
     }
-
-	void Reset()
-	{
-		transform.position = m_startingPos.position;
-	}
 
     bool HasKey()
     {

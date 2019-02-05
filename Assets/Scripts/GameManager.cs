@@ -16,20 +16,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Reset();
+		isGameOver = false;
+		EnemyLogic.needReset = true;
     }
 
 	public void GameOver()
 	{
 		isGameOver = true;
         SceneManager.LoadScene("GameOver");
-	}
-
-	public void Reset()
-    {
-        isGameOver = false;
-        EnemyLogic.needReset = true;
-
-        InteractionText.SetText("");
 	}
 }
