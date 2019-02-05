@@ -4,118 +4,46 @@ using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour
 {
-	public Transform m_startPoint;
-	public Transform m_endPoint;
-	public float m_patrolSpeed = 0.01f;
-	public float m_chaseSpeed = 1.0f;
-	public float m_rayCastDistance = 4;
-
-	public static bool needReset;
-
-	private Transform m_currentStartPoint;
-	private Transform m_currentEndPoint;
-
-	private float m_pathDistance;
-
-	private bool m_GoingTowardsEndPoint;
+	public float m_patrolSpeed = 5.0f;		// Speed enemy patrols at
+	public float m_chaseSpeed = 8.0f;		// Speed enemy chases player
+	public float m_rayCastDisChase = 25.0f;	// Enemy's line of sight distance for begining and maintaining chase on player
+	public float m_rayCastDisPatrol = 5.0f;	// Enemy's line of sight distance for patroling (distance to detected Wall or Door before enemy turns)
+	public Vector2 m_fowardVec;
 
 	private SpriteRenderer m_spriteR;
-
-	private Vector3 m_currentFowardVec;
-
-	private float m_percentPathComplete = 1.0f;
-
-	enum STATE
-	{
-		PATROL_STATE,
-		ATTACK_STATE,
-	};
-
-	private STATE m_currentState = STATE.PATROL_STATE;
 
     // Start is called before the first frame update
     void Start()
     {
-		//transform.position = m_startPoint.position;
-		m_pathDistance = Vector2.Distance (m_startPoint.position, m_endPoint.position);
-
-		//m_currentStartPoint = m_startPoint;
-		m_currentStartPoint = gameObject.transform;
-		m_currentEndPoint = m_endPoint;
-		m_GoingTowardsEndPoint = true;
-
-		needReset = false;
-
 		m_spriteR = gameObject.GetComponentInChildren<SpriteRenderer> ();
+		m_spriteR.flipX = m_fowardVec.x > 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-		m_currentFowardVec = Vector3.Normalize(m_currentEndPoint.position - m_currentStartPoint.position);
-		if (!CheckForPlayer ()) {
-			if (m_currentState == STATE.ATTACK_STATE) {
-				m_currentStartPoint = gameObject.transform;
-				m_pathDistance = Vector2.Distance (m_currentStartPoint.position, m_currentEndPoint.position);
-			}
+		if (!AbleToSeePlayer ()) 
+		{
 			Patrol ();
-		} else {
-			Attack ();
 		}
-
-		if (needReset) {
-			Reset ();
+		else 
+		{
+			Attack ();
 		}
     }
 
-	bool CheckForPlayer()
+	bool AbleToSeePlayer()
 	{
 		if (UserInputScript.isHidden) {
 			return false;
 		}
-
-		RaycastHit2D[] hits;
-		hits = Physics2D.RaycastAll(transform.position, m_currentFowardVec, m_rayCastDistance);
-
-		List<Collider2D> hitColliders = new List<Collider2D> ();;
-		for (int i = 0; i < hits.Length; i++) {
-			RaycastHit2D hit = hits [i];
-			if (hit.collider != null && hit.collider.gameObject.tag != "Enemy" && !hit.collider.isTrigger) {
-				hitColliders.Add (hit.collider);
-			}
-		}
-
-		hitColliders.Sort ((a, b) =>
-			Vector2.Distance (transform.position, a.gameObject.transform.position).
-			CompareTo (Vector2.Distance (transform.position, b.gameObject.transform.position)));
-
-		if (hitColliders.Count > 0) {
-			string tag = hitColliders[0].gameObject.tag;
-			if (tag == "Player") {
-				return true;
-			} else if (tag == "Door") {
-				if (m_GoingTowardsEndPoint) {
-					m_currentStartPoint = hitColliders[0].gameObject.transform;
-					m_currentEndPoint = m_startPoint;
-					m_GoingTowardsEndPoint = false;
-					m_spriteR.flipX = true;
-				} 
-				else {
-					m_currentStartPoint = hitColliders[0].gameObject.transform;
-					m_currentEndPoint = m_endPoint;
-					m_GoingTowardsEndPoint = true;
-					m_spriteR.flipX = false;
-				}
-			}
-		}
-
-		return false;
+	
+		string[] tags = { "Player" };
+		return CastRayObjTags (tags, m_rayCastDisChase);
 	}
 
 	void Attack()
 	{
-		m_currentState = STATE.ATTACK_STATE;
-
 		Vector3 dir = Vector3.Normalize(GameManager.Instance.player.transform.position - transform.position);
 		float x = (dir.x > 0) ? 1 : -1; // the x value should only be -1 or 1
 		dir.x = x;
@@ -128,47 +56,46 @@ public class EnemyLogic : MonoBehaviour
 
 	void Patrol()
 	{
-		m_currentState = STATE.PATROL_STATE;
-
-		if(m_percentPathComplete > 0.1f){
-			Vector3 dir = Vector3.Normalize(m_currentEndPoint.position - m_currentStartPoint.position);
-			Vector3 currentPos = transform.position;
-			currentPos.x += Time.deltaTime * (m_patrolSpeed * dir.x);
-
-			float dis = Vector2.Distance (currentPos, m_currentEndPoint.position);
-
-			// percentage of the path completed = distance moved / total distace to move
-			m_percentPathComplete = dis / m_pathDistance;
-
-			transform.position = currentPos;
-		} 
-		else {
-			m_percentPathComplete = 1.0f;
-			if (m_GoingTowardsEndPoint) {
-				m_currentStartPoint = m_endPoint;
-				m_currentEndPoint = m_startPoint;
-				m_GoingTowardsEndPoint = false;
-				m_spriteR.flipX = true;
-			} 
-			else {
-				m_currentStartPoint = m_startPoint;
-				m_currentEndPoint = m_endPoint;
-				m_GoingTowardsEndPoint = true;
-				m_spriteR.flipX = false;
-			}
+		string[] tags = { "Door", "Wall" };
+		if (CastRayObjTags (tags, m_rayCastDisPatrol)) 
+		{
+			m_fowardVec.x *= -1;
+			m_spriteR.flipX = !m_spriteR.flipX;
 		}
+
+		Vector3 currentPos = transform.position;
+		currentPos.x += Time.deltaTime * (m_patrolSpeed * m_fowardVec.x);
+
+		transform.position = currentPos;
 	}
 
-	void Reset()
+	bool CastRayObjTags(string[] tags, float rayCastDistance)
 	{
-		m_currentState = STATE.PATROL_STATE;
+		RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, m_fowardVec, rayCastDistance);
+		List<Collider2D> hitColliders = new List<Collider2D> ();
 
-		transform.position = m_startPoint.position;
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit2D hit = hits [i];
+			if (hit.collider != null && hit.collider.gameObject.tag != "Enemy" && !hit.collider.isTrigger) {
+				hitColliders.Add (hit.collider);
+			}
+		}
 
-		m_currentStartPoint = m_startPoint;
-		m_currentEndPoint = m_endPoint;
-		m_GoingTowardsEndPoint = true;
+		hitColliders.Sort ((a, b) =>
+			Vector2.Distance (transform.position, a.gameObject.transform.position).
+			CompareTo (Vector2.Distance (transform.position, b.gameObject.transform.position)));
 
-		needReset = false;
+		if (hitColliders.Count > 0) 
+		{
+			string tag = hitColliders [0].gameObject.tag;
+			for (int t = 0; t < tags.Length; ++t) 
+			{
+				if(tags[t] == tag)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

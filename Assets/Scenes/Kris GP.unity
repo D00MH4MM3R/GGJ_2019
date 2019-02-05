@@ -502,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.3
+      value: 8.01
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -589,6 +589,16 @@ PrefabInstance:
       propertyPath: m_rayCastDistance
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_fowardVec.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_rayCastDisChase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732868, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_GravityScale
@@ -628,6 +638,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1.2225475
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.801117
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8239927
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 15.027992
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7869984042864732867, guid: 97b7db9f120be3342938eb8af555879b, type: 3}
@@ -2467,7 +2497,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31.7
+      value: -31.38
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -2554,6 +2584,16 @@ PrefabInstance:
       propertyPath: m_rayCastDistance
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_fowardVec.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_rayCastDisChase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732868, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_GravityScale
@@ -2593,6 +2633,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5340481
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 15.055622
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1.3280449
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.62426
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7869984042864732867, guid: 97b7db9f120be3342938eb8af555879b, type: 3}
@@ -2702,7 +2762,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.5
+      value: -11.87
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -2789,6 +2849,16 @@ PrefabInstance:
       propertyPath: m_rayCastDistance
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_fowardVec.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_rayCastDisChase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732868, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_GravityScale
@@ -2829,6 +2899,26 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8566351
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 14.872496
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1.0815563
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 6.225788
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7869984042864732867, guid: 97b7db9f120be3342938eb8af555879b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97b7db9f120be3342938eb8af555879b, type: 3}
@@ -2857,7 +2947,7 @@ PrefabInstance:
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.5
+      value: -11.71
       objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732866, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
@@ -2944,6 +3034,16 @@ PrefabInstance:
       propertyPath: m_rayCastDistance
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_fowardVec.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732864, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_rayCastDisChase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7869984042864732868, guid: 97b7db9f120be3342938eb8af555879b,
         type: 3}
       propertyPath: m_GravityScale
@@ -2983,6 +3083,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.6862078
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 14.926607
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1.1161966
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869984042864732869, guid: 97b7db9f120be3342938eb8af555879b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 6.2950687
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7869984042864732867, guid: 97b7db9f120be3342938eb8af555879b, type: 3}
