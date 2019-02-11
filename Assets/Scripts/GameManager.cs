@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +25,16 @@ public class GameManager : MonoBehaviour
 	public void GameOver()
 	{
 		isGameOver = true;
-        SceneManager.LoadScene("GameOver");
+    SceneManager.LoadScene("GameOver");
+		//gameOverObject.SetActive (true);
+	}
+
+	public static void Reset()
+	{
+		gameOverObject.SetActive (false);
+		interactObject.SetActive (false);
+		isGameOver = false;
+
+		EnemyLogic.needReset = true;
 	}
 }
