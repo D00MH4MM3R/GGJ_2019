@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 		isGameOver = false;
-		EnemyLogic.needReset = true;
     }
 
 	public void GameOver()
