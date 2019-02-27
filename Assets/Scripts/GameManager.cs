@@ -25,16 +25,16 @@ public class GameManager : MonoBehaviour
 	public void GameOver()
 	{
 		isGameOver = true;
-    SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("Scenes/GameOver");
 		//gameOverObject.SetActive (true);
 	}
 
 	public static void Reset()
 	{
-		gameOverObject.SetActive (false);
-		interactObject.SetActive (false);
-		isGameOver = false;
+		//gameOverObject.SetActive (false);
+		//interactObject.SetActive (false);
+		//isGameOver = false;
 
-		EnemyLogic.needReset = true;
+		//EnemyLogic.needReset = true;
 	}
 }

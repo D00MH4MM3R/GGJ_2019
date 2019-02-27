@@ -27,12 +27,6 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/TempNewScene.unity
     guid: f7cded9d1f4e0584f9e5223a34d2f61e
   - enabled: 1
