@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: f578d27438119dd4ca98f79b27a1337c
+guid: d7cfc00d5d72b0648b9546952aeb18c4
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Asset_Plant_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -70,44 +69,13 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Asset_Plant_0
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 60
-        width: 633
-        height: 1268
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e217c05c165d864c9c0e0cf3eefb045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 61668ede0da8819449016f0a132b8a03
+    spriteID: 1f932e8e7a76ef0488b0fbfd69995ecf
     vertices: []
     indices: 
     edges: []
