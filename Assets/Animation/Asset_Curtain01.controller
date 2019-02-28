@@ -9,7 +9,7 @@ AnimatorController:
   m_Name: Asset_Curtain01
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: curtainEvent
+  - m_Name: hideEvent
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: curtainEvent
+    m_ConditionEvent: hideEvent
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102833980831101978}
@@ -84,7 +84,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: curtainEvent
+    m_ConditionEvent: hideEvent
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102352940664617568}

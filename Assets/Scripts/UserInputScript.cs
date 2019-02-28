@@ -20,8 +20,9 @@ public class UserInputScript : MonoBehaviour
 
     private Collider2D m_doorCollider;
     private Collider2D m_itemCollider;
+    private Collider2D m_hideCollider;
 
-	private int m_defaultSortingOrder;
+    private int m_defaultSortingOrder;
 
     private ItemType m_HoldingItemType = ItemType.None;
 
@@ -83,14 +84,19 @@ public class UserInputScript : MonoBehaviour
 			if (isHidden) 
 			{
 				m_animator.SetBool("isWalking", false);
-				InteractionText.SetText ("");
-				m_spriteRenderer.sortingOrder = 4;
+                InteractionText.SetText("");
+                m_spriteRenderer.sortingOrder = 4;
 			} 
 			else 
 			{
 				m_spriteRenderer.sortingOrder = m_defaultSortingOrder;
-			}
-		}
+            }
+
+            if (m_hideCollider.GetComponent<Animator>() != null)
+            {
+                m_hideCollider.GetComponent<Animator>().SetTrigger("hideEvent");
+            }
+        }
 
         // item
 		if (Input.GetButtonDown("Interact") && m_itemCollider != null)
@@ -138,6 +144,7 @@ public class UserInputScript : MonoBehaviour
 		case "Hideable":
 			isAbleToHide = true;
 			InteractionText.SetText(InteractionText.GetDefaultText() + " hide!");
+            m_hideCollider = col;
             break;
 		default:
 			break;
@@ -156,6 +163,7 @@ public class UserInputScript : MonoBehaviour
 			break;
             case "Item":
             m_itemCollider = null;
+            m_hideCollider = null;
             break;
 		default:
 			break;
