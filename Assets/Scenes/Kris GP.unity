@@ -713,6 +713,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door2_firstfloor
       objectReference: {fileID: 0}
+    - target: {fileID: 5685050882283319330, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378305458042358124, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378305458042358124, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378305458042358124, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898560807831709457, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898560807831709457, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201021262683074510, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977522734105035187, guid: 8db99451c7d1c334bbfe85fb8bdb7feb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db99451c7d1c334bbfe85fb8bdb7feb, type: 3}
 --- !u!4 &626863182 stripped
@@ -1949,6 +1989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 111424636}
+  m_size: 16
+  m_xOffset: 0
+  m_yOffset: 5
 --- !u!81 &1352250284
 AudioListener:
   m_ObjectHideFlags: 0
