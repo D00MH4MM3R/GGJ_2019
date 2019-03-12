@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
 		//gameOverObject.SetActive (true);
 	}
 
+    public void GameWin()
+    {
+        isGameOver = true;
+        SceneManager.LoadScene("Scenes/GameWin");
+    }
+
 	public static void Reset()
 	{
 		//gameOverObject.SetActive (false);
