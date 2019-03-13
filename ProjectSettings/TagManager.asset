@@ -11,6 +11,7 @@ TagManager:
   - Hideable
   - doorTrigger
   - Wall
+  - breakable
   layers:
   - Default
   - TransparentFX
