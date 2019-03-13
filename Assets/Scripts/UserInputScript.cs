@@ -18,13 +18,14 @@ public class UserInputScript : MonoBehaviour
 
     private GameObject m_heldItem;
 
-    private Collider2D m_doorCollider;
-    private Collider2D m_itemCollider;
-    private Collider2D m_hideCollider;
+    public Collider2D m_doorCollider;
+    public Collider2D m_itemCollider;
+    public Collider2D m_hideCollider;
+    public Collider2D m_breakCollider;
 
     private int m_defaultSortingOrder;
 
-    private ItemType m_HoldingItemType = ItemType.None;
+    public ItemType m_HoldingItemType = ItemType.None;
 
     // Start is called before the first frame update
     void Start()
@@ -52,9 +53,10 @@ public class UserInputScript : MonoBehaviour
             transform.Translate(transform.right * deltaTime * horizontalAxis * m_speed);
         }
 
+        // key + door
 		if (Input.GetButtonDown("Interact") && m_doorCollider != null && m_doorDelayTimer >= m_doorDelay) 
         {
-            DoorLock doorLock = m_doorCollider.GetComponent<DoorLock>();
+            DoorLock doorLock = m_doorCollider.GetComponentInParent<DoorLock>();
             if (doorLock)
             {
                 if (HasKey())
@@ -120,6 +122,13 @@ public class UserInputScript : MonoBehaviour
                 m_heldItem.SetActive(false);
             }
         }
+
+        // smash
+        if (Input.GetButtonDown("Interact") && m_breakCollider != null && HasCrowbar())
+        {
+            Destroy(m_breakCollider.gameObject);
+            m_breakCollider = null;
+        }
     }
 
 	void OnTriggerEnter2D(Collider2D col)
@@ -146,6 +155,10 @@ public class UserInputScript : MonoBehaviour
 			InteractionText.SetText(InteractionText.GetDefaultText() + " hide!");
             m_hideCollider = col;
             break;
+        case "breakable":
+            InteractionText.SetText(InteractionText.GetDefaultText() + " smash!");
+            m_breakCollider = col;
+            break;
 		default:
 			break;
 		}
@@ -161,9 +174,12 @@ public class UserInputScript : MonoBehaviour
 		case "Hideable":
 			isAbleToHide = false;
 			break;
-            case "Item":
+        case "Item":
             m_itemCollider = null;
             m_hideCollider = null;
+            break;
+        case "breakable":
+            m_breakCollider = null;
             break;
 		default:
 			break;
